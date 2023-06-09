@@ -1,0 +1,14 @@
+{% extends "encyclopedia/layout.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+	<h1>Matches Found:</h1>
+	
+    <ul>
+        {% for find in finds %}
+            <li><a href="{{find}}">{{find}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
