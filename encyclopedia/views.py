@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import path
 from django.urls import resolve
 from django import forms
@@ -6,7 +6,7 @@ from . import util, urls
 import re
 from django.http import HttpResponse
 import random
-import markdown2
+import markdown
 
 
 def index(request):
@@ -26,7 +26,7 @@ def article(request):
 		
 def getit(request, search):
 	if util.get_entry(search) is not None:
-		return render(request, "encyclopedia/article.html",{"content": markdown2.markdown(util.get_entry(search)),"title": search })
+		return render(request, "encyclopedia/article.html",{"content": markdown.markdown(util.get_entry(search)),"title": search })
 		
 	listOfEntries = util.list_entries()
 	listOfFinds = []
@@ -75,22 +75,24 @@ def createEntry(request):
 def editEntry(request, id):
 	title = id
 	article = util.get_entry(title)
-	
+	#print(article)
+	#print(article.encode())
 	if request.method == "POST":
 		form = NewArticle(request.POST)
 		if form.is_valid():
 			article = form.cleaned_data["article"]
 			title = form.cleaned_data["title"]
-			util.save_entry(title, article)
+			util.save_entry(title, article.encode()) #if it wasn't for .encode() linebreaks would double every time in the textarea window (innerText, not innerHTML), both the \r and \n would double at every save. See it by uncommenting the two prints upper in this function and removing encode() from the parameter of util.save_entry
+			# https://stackoverflow.com/questions/69216585/newline-character-n-duplicates-when-writing-a-file-with-python#:~:text=I%20had%20the%20same%20problem%2C%20saving%20markdown%20files,now%20it%20can%20be%20saved%20into%20a%20file
 		return getit(request, id)
 	return render(request, "encyclopedia/editEntry.html", {
         "form": NewArticle(initial={'title':title,'article':article})})
 	
 class NewArticle(forms.Form):
-	title = forms.CharField()
-	article = forms.CharField(widget = forms.Textarea)
+	title = forms.CharField(label = '')
+	article = forms.CharField(widget = forms.Textarea, label ='')
 
 def randomArticle(request):
 	listOfEntries = util.list_entries()
 	article = listOfEntries[(random.randint(0, len(listOfEntries)-1))]
-	return getit(request, article)
+	return redirect(f"wiki:{article}")

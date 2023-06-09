@@ -10,28 +10,29 @@
     </head>
     <body>
         <div class="row">
-            <div class="sidebar col-lg-2 col-md-3">
+            <div class="sidebar">
                 <h2>Wiki</h2>
                 <form ction="{% url 'wiki:index' %}">
-                    <input class="search" type="search" name="search" placeholder="Search Encyclopedia">
+                    <input class="search" type="search" name="search" placeholder="Search Encyclopedia" id='input'>
                 </form>
                 <div>
                     <a href="{% url 'wiki:index' %}">Home</a>
                 </div>
                 <div>
-                    <a href="{% url 'wiki:createEntry' %}">Create New Page</a>
+                    <a href="{% url 'wiki:createEntry' %}" id="createEntry">Create New Page</a>
                 </div>
                 <div>
-                    <a href="{% url 'wiki:randomArticle' %}">Random Page</a>
+                    <a href="{% url 'wiki:randomArticle' %}" id="randomEntry">Random Page</a>
                 </div>
                 {% block nav %}
                 {% endblock %}
             </div>
-            <div class="main col-lg-10 col-md-9">
+            <div class="main">
                 {% block body %}
                 {% endblock %}
             </div>
         </div>
-
     </body>
+    <script>
+    </script>
 </html>

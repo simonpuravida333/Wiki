@@ -10,11 +10,9 @@ urlpatterns = [
     path("wiki/randomArticle/", views.randomArticle, name="randomArticle"),
 ]
 
-wiki = "wiki/"
 newurl = ""
 for article in util.list_entries():
-	#newurl = wiki+article+"/<path>"
-	newurl = wiki+article
+	newurl = app_name+"/"+article
 	urlpatterns.append(path(newurl, views.article, name=article))
 
 urlpatterns.append(re_path(r'^(?P<path>.*)/$', views.notFound))
