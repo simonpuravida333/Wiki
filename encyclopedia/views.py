@@ -8,6 +8,8 @@ from django.http import HttpResponse
 import random
 import markdown
 
+def goIndex(request):
+	return redirect("wiki/")
 
 def index(request):
 	search = request.GET.get('search')
