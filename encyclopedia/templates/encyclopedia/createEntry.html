@@ -8,9 +8,9 @@
 
 {% block body %}
     <h1>Create An Article</h1>
-    <form action="{% url 'wiki:createEntry' %}" method="post">
+    <form action="" method="post">
     	{% csrf_token %}
     	{{ form }}
-        <br><input type="submit">
+        <input type="submit">
     </form>
 {% endblock %}

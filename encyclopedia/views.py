@@ -85,7 +85,7 @@ def editEntry(request, id):
 			util.save_entry(title, article.encode()) #if it wasn't for .encode() linebreaks would double every time in the textarea window (innerText, not innerHTML), both the \r and \n would double at every save. See it by uncommenting the two prints upper in this function and removing encode() from the parameter of util.save_entry
 			# https://stackoverflow.com/questions/69216585/newline-character-n-duplicates-when-writing-a-file-with-python#:~:text=I%20had%20the%20same%20problem%2C%20saving%20markdown%20files,now%20it%20can%20be%20saved%20into%20a%20file
 		return getit(request, id)
-	return render(request, "encyclopedia/editEntry.html", {
+	return render(request, "encyclopedia/createEntry.html", {
         "form": NewArticle(initial={'title':title,'article':article})})
 	
 class NewArticle(forms.Form):

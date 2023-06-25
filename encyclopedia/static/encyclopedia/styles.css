@@ -1,26 +1,14 @@
 body {
-    margin: 0;
     background-color: #1F2A3E;
     color: white;
     display: flex;
     flex-wrap: flex;
-}
-/*
-code {
-    white-space: pre;
-}*/
-
-h1 {
-    margin-top: 0px;
-    padding-top: 20px;
 }
 
 textarea{
 	width: 300px;
 	height: 300px;
 	border-radius: 20px;
-	margin: 20px;
-	margin-left: 0px;
 	padding: 10px;
 	width: 100%;
 	resize: both;
@@ -28,6 +16,10 @@ textarea{
 	outline: none;
 	&:focus{}
 	&:hover{}
+}
+
+form{
+	display: inline;
 }
 
 form input{
@@ -38,8 +30,7 @@ form input{
 	margin-left: 0px;
 	padding: 10px;
 	border-radius: 10px;
-	&:hover{}
-	&:focus{}
+
 	&[type=submit]
 	{
 		background-color: deepskyblue;
@@ -47,17 +38,18 @@ form input{
 	}
 }
 
+
 a{
-	color:#DBA4FF;
+	color: deepskyblue;
 	&:visited
 	{
-		color:#DBA4FF;
+		color: deepskyblue;
 		/*color: #FF52E7;*/
 	}
 }
 
 .main {
-    padding: 10px;
+	margin: 40px;
     width: 500px;
 }
 
@@ -66,7 +58,7 @@ a{
     padding: 30px;
     width: 300px;
     border-radius: 20px;
-    margin: 20px; 
+    margin: 40px; 
 } 
 
 h2{
