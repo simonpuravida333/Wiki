@@ -4,6 +4,7 @@ import re
 
 app_name = "wiki"
 urlpatterns = [
+	path("", views.index, name="index"),
     path("wiki/", views.index, name="index"),
     path("wiki/createEntry/", views.createEntry, name="createEntry"),
     path("wiki/editEntry/<id>/", views.editEntry, name="editEntry"),
