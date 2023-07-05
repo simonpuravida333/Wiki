@@ -5,6 +5,4 @@
 
 really.
 
-#hmm
-
-hmm.
+##I can feel the newness.
